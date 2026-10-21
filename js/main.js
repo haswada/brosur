@@ -252,9 +252,11 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+
   // Form → WhatsApp
   document.getElementById('interestForm')?.addEventListener('submit', (e) => {
     e.preventDefault();
+
     const form = e.target;
     const nama = form.nama.value.trim();
     const wa = form.whatsapp.value.trim();
@@ -263,9 +265,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const message = `Halo Haswada,%0A%0ASaya tertarik dengan program *${selectedProgram}* jenjang *${selectedJenjang}*.%0A%0ANama: ${nama}%0AWhatsApp: ${wa}%0AAsal Sekolah: ${asal}%0A%0AMohon informasinya. Terima kasih.`;
 
     // GANTI NOMOR WHATSAPP SEKOLAH DI SINI
-    const phone = '6281234567890';
+    const phone = '628385902900';
+
+    // GA4: catat proses melanjutkan ke WhatsApp
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'whatsapp_lanjut_click', {
+        event_category: 'SPMB',
+        event_label: 'Lanjutkan via WhatsApp'
+      });
+    }
+
     window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
   });
+
+   
 
     
 });
