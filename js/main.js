@@ -141,6 +141,20 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+
+  // ---------- GA4: KLIK KLAIM BEASISWA ----------
+  document.querySelectorAll(
+    '.cta-card.accent[href="#opportunity"]'
+  ).forEach((button) => {
+    button.addEventListener('click', () => {
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'klaim_beasiswa_click', {
+          event_category: 'SPMB',
+          event_label: 'Klaim Beasiswa'
+        });
+      }
+    });
+  });
     
 
   // ---------- OPPORTUNITY STEPS ----------
