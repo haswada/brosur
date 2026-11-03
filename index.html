@@ -12,35 +12,80 @@
 </script>
 
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#F8F4EF" />
-  <title>HASWADA — SMP & SMA Hasanuddin</title>
+  <meta name="description" content="Kenali SMP–SMA Hasanuddin Islamic Boarding School: pendidikan, kehidupan pesantren, prestasi, fasilitas, beasiswa, dan pendaftaran Haswada." />
+  <title>HASWADA — SMP & SMA Hasanuddin Islamic Boarding School</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+  <!-- NAVIGASI RESPONSIF: desktop di atas, mobile di bawah -->
+  <header class="site-header" aria-label="Navigasi utama">
+    <a class="site-brand" href="#opening" aria-label="Haswada, kembali ke beranda">HASWADA<span>TERDEPAN &amp; BERPRESTASI</span></a>
+    <nav class="desktop-nav" aria-label="Menu utama">
+      <a href="#opening" data-nav="opening">Beranda</a>
+      <a href="#grow" data-nav="grow">Profil &amp; Keunggulan</a>
+      <a href="#live" data-nav="live">Kehidupan Siswa</a>
+      <a href="#eskul" data-nav="eskul">Ekstrakurikuler</a>
+      <a href="#facilities" data-nav="facilities">Fasilitas</a>
+      <a href="#achieve" data-nav="achieve">Prestasi</a>
+      <a href="#alumni" data-nav="alumni">Alumni</a>
+      <a class="desktop-nav-cta" href="#opportunity" data-nav="opportunity">Beasiswa &amp; Daftar</a>
+    </nav>
+  </header>
 
-  <!-- ===================== 01. OPENING ===================== -->
+  <nav class="mobile-bottom-nav" aria-label="Navigasi bawah">
+    <a class="mobile-nav-item is-active" href="#opening" data-nav="opening">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg><span>Beranda</span>
+    </a>
+    <a class="mobile-nav-item" href="#grow" data-nav="grow">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg><span>Profil</span>
+    </a>
+    <a class="mobile-nav-item" href="#live" data-nav="live">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg><span>Kehidupan</span>
+    </a>
+    <a class="mobile-nav-item" href="#achieve" data-nav="achieve">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 21h8m-4-4v4M7 4h10v5a5 5 0 0 1-10 0V4ZM7 6H3v2a4 4 0 0 0 4 4m10-6h4v2a4 4 0 0 1-4 4"/></svg><span>Prestasi</span>
+    </a>
+    <button class="mobile-nav-item mobile-more-toggle" type="button" aria-expanded="false" aria-controls="mobileMorePanel">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><path d="M5 5h14M5 19h14"/></svg><span>Lainnya</span>
+    </button>
+  </nav>
+  <div class="mobile-more-backdrop" hidden></div>
+  <div class="mobile-more-panel" id="mobileMorePanel" aria-label="Menu lainnya" hidden>
+    <div class="more-panel-heading"><strong>Jelajahi Haswada</strong><button type="button" class="more-close" aria-label="Tutup menu">×</button></div>
+    <a href="#eskul" data-nav="eskul"><span class="more-icon">✦</span><span><strong>Ekstrakurikuler</strong><small>Minat, bakat, dan keterampilan</small></span></a>
+    <a href="#facilities" data-nav="facilities"><span class="more-icon">⌂</span><span><strong>Fasilitas</strong><small>Lingkungan dan sarana belajar</small></span></a>
+    <a href="#alumni" data-nav="alumni"><span class="more-icon">◎</span><span><strong>Alumni</strong><small>Cerita setelah lulus</small></span></a>
+    <a href="#opportunity" data-nav="opportunity" class="more-admission"><span class="more-icon">↗</span><span><strong>Beasiswa &amp; Daftar</strong><small>Jalur, biaya, dan pendaftaran</small></span></a>
+  </div>
+
+
+   <!-- ===================== 01. OPENING ===================== -->
   <section id="opening" class="section opening revealed">
     <div class="opening-bg"></div>
     <div class="opening-content">
 
-      <p class="eyebrow fade-up">MASA DEPANMU DIMULAI DI SINI</p>
+     <p class="eyebrow fade-up">MASA DEPANMU DIMULAI DI SINI</p> 
       <h1 class="logo-text fade-up delay-1">HASWADA</h1>
-      <p class="tagline fade-up delay-2">Terdepan Berprestasi</p>
-      <p class="welcome fade-up delay-3">Selamat datang di<br/>SMP – SMA HASANUDDIN</p>
+      <p class="tagline fade-up delay-2">Terdepan &amp; Berprestasi</p>
+    <!--  <p class="welcome fade-up delay-3">Lebih dari Sekadar Sekolah.<br/>
+          <strong>Tempat Masa Depan Dibentuk.</strong></p>-->
+        <p class="hero-support fade-up delay-3"><b>Tempat belajar, bertumbuh,<br/> dan menyiapkan masa depan bersama <br/>
+            SMP–SMA Hasanuddin <br/>Islamic Boarding School.</b></p>
 
-      <div class="cta-cards fade-up delay-4">
+ <!--     <div class="cta-cards fade-up delay-4">
         <a href="#grow" class="cta-card">
           <div class="cta-text-wrapper">
-            <strong>Kenali Haswada lebih dekat</strong>
+            <strong>Jelajahi Haswada</strong>
           </div>
-        </a>
+        </a> -->
         <a href="#opportunity" class="cta-card accent elegant-glow">
   <div class="cta-text-wrapper">
-    <strong>Isi formulir klaim beasiswa</strong>
+    <strong>[ Klaim Beasiswa & Daftar ]</strong>
   </div>
 </a>
       </div>
@@ -112,9 +157,11 @@
       </p>
     </div>
 
+
+      
     <!-- CAROUSEL SLIDER OTOMATIS -->
     <div class="carousel-container">
-      
+        
       <!-- Dots Indicator di Atas Kanan Foto -->
       <div class="carousel-dots">
         <span class="dot active"></span>
@@ -150,6 +197,7 @@
     </div>
 
   </div>
+    
 </section>
 
   <!-- ===================== 04. FIND YOUR WORLD ===================== -->
@@ -194,7 +242,7 @@
         <div class="eskul-img" style="background-image: url('images/eskul-robotik.png')"></div>
         <h3>Robotik</h3>
       </div>
-        <div class="eskul-card" data-desc=""Temukan rahasia kecantikan, asah kreativitas seni kosmetik, dan tunjukkan pesonamu di setiap panggung!"">
+        <div class="eskul-card" data-desc="Temukan rahasia kecantikan, asah kreativitas seni kosmetik, dan tunjukkan pesonamu di setiap panggung!">
         <div class="eskul-img" style="background-image: url('images/eskul-rias.png')"></div>
         <h3>Tata Rias</h3>
       </div>
@@ -345,83 +393,180 @@ Juara 3 Kejuaraan Pencak Silat Wilayah Jawa Timur Ke - X Tahun 2026</div>
   </section>
 
   <!-- ===================== 09. YOUR OPPORTUNITY ===================== -->
-  <section id="opportunity" class="section opportunity">
-    <div class="container">
-      <p class="section-eyebrow">Kesempatan</p>
-      <h2 class="section-title">Mari kita mulai<br/>dari sini.</h2>
+  <!-- ===================== 09. PENDAFTARAN & BEASISWA ===================== -->
+<section id="opportunity" class="section opportunity">
+  <div class="container">
+    <p class="section-eyebrow">Penerimaan Peserta Didik Baru 2027/2028</p>
+    <h2 class="section-title">Temukan jalur beasiswa<br/>dan kesempatanmu.</h2>
+    <p class="section-desc opportunity-intro">Pilih jenjang dan jalur yang sesuai. Rincian biaya serta manfaat beasiswa akan ditampilkan secara transparan sebelum kamu menghubungi panitia.</p>
 
-      <!-- STEP 1 -->
-      <div class="step active" id="step1">
-        <p class="step-label">Langkah 1 dari 3</p>
-        <h3>Pilih Jenjang</h3>
-        <div class="choice-grid">
-          <button class="choice-btn" data-jenjang="SMP">SMP</button>
-          <button class="choice-btn" data-jenjang="SMA">SMA</button>
-        </div>
-      </div>
+    <div class="registration-progress" aria-label="Tahapan pendaftaran">
+      <span class="progress-step active" data-progress="1">01 <small>Jenjang</small></span>
+      <i></i><span class="progress-step" data-progress="2">02 <small>Jalur</small></span>
+      <i></i><span class="progress-step" data-progress="3">03 <small>Kategori</small></span>
+      <i></i><span class="progress-step" data-progress="4">04 <small>Identitas</small></span>
+      <i></i><span class="progress-step" data-progress="5">05 <small>Rincian</small></span>
+    </div>
 
-      <!-- STEP 2 -->
-      <div class="step" id="step2">
-        <p class="step-label">Langkah 2 dari 3</p>
-        <h3>Pilih Program</h3>
-        <div class="choice-grid">
-          <button class="choice-btn" data-program="Prestasi">Prestasi</button>
-          <button class="choice-btn" data-program="Gelombang">Gelombang</button>
-        </div>
-        <button class="back-btn" data-back="1">← Kembali</button>
-      </div>
-
-      <!-- STEP 3 -->
-      <div class="step" id="step3">
-        <p class="step-label">Langkah 3 dari 3</p>
-        <h3 id="programTitle">Program</h3>
-        <div class="program-card">
-          <div class="program-price">
-            <span class="price-label" id="priceLabel">Prestasi — Peringkat 1</span>
-            <span class="price-value" id="priceValue">Rp 1.205.000</span>
-          </div>
-          <ul class="program-details" id="programDetails">
-            <li>Biaya Tahunan</li>
-            <li>Infaq</li>
-            <li>Seragam</li>
-            <li>Buku & Modul</li>
-          </ul>
-        </div>
-
-        <button class="btn-primary" id="btnTertarik">Saya Tertarik →</button>
-        <button class="back-btn" data-back="2">← Kembali</button>
-      </div>
-
-      <!-- FORM -->
-      <div class="step" id="stepForm">
-        <p class="step-label">Hampir selesai</p>
-        <h3>Isi data singkat</h3>
-        <form id="interestForm">
-          <input type="text" name="nama" placeholder="Nama lengkap" required />
-          <input type="tel" name="whatsapp" placeholder="Nomor WhatsApp" required />
-          <input type="text" name="asal" placeholder="Asal sekolah" required />
-          <button type="submit" class="btn-primary">Lanjutkan via WhatsApp</button>
-        </form>
-        <button class="back-btn" data-back="3">← Kembali</button>
+    <div class="step active" id="step1" data-step="1">
+      <p class="step-label">Langkah 1 · Pilih jenjang</p>
+      <h3>Calon siswa akan mendaftar ke jenjang apa?</h3>
+      <div class="choice-grid">
+        <button type="button" class="choice-btn" data-jenjang="SMP">
+          <span class="choice-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 5l9 5.5-9 5.5-9-5.5Z"/><path d="M7 13v4.5c2.8 2 7.2 2 10 0V13M21 10.5V17"/></svg></span>
+          <strong>SMP Hasanuddin</strong><small>Untuk lulusan SD/MI</small>
+        </button>
+        <button type="button" class="choice-btn" data-jenjang="SMA">
+          <span class="choice-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20V7.5L12 4l8 3.5V20M8 20v-5h8v5M8 9h.01M12 9h.01M16 9h.01M3 20h18"/></svg></span>
+          <strong>SMA Hasanuddin</strong><small>Untuk lulusan SMP/MTs</small>
+        </button>
       </div>
     </div>
-  </section>
+
+    <div class="step" id="step2" data-step="2">
+      <p class="step-label">Langkah 2 · Pilih jalur</p>
+      <h3>Pilih jalur beasiswa atau potongan biaya</h3>
+      <div class="choice-grid choice-grid-three">
+        <button type="button" class="choice-btn choice-wide" data-program="akademik">
+          <span class="choice-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 14.8 8.7 21 9.6l-4.5 4.4 1.1 6.2L12 17.3l-5.6 2.9 1.1-6.2L3 9.6l6.2-.9L12 3Z"/></svg></span>
+          <strong>Prestasi Akademik</strong><small>Penghargaan berdasarkan peringkat akademik</small>
+        </button>
+        <button type="button" class="choice-btn choice-wide" data-program="nonakademik">
+          <span class="choice-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="m8.5 12-1 9 4.5-2.5 4.5 2.5-1-9"/></svg></span>
+          <strong>Prestasi Nonakademik</strong><small>Penghargaan berdasarkan tingkat prestasi/lomba</small>
+        </button>
+        <button type="button" class="choice-btn choice-wide" data-program="gelombang">
+          <span class="choice-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18M8 14h3M8 17h7"/></svg></span>
+          <strong>Potongan Gelombang</strong><small>Manfaat sesuai gelombang pendaftaran</small>
+        </button>
+      </div>
+      <button type="button" class="back-btn" data-back="1">Kembali ke pilihan jenjang</button>
+    </div>
+
+    <div class="step" id="step3" data-step="3">
+      <p class="step-label">Langkah 3 · Pilih kategori</p>
+      <h3 id="categoryHeading">Pilih kategori</h3>
+      <p class="step-helper" id="categoryHelper">Pilih kategori yang sesuai dengan kondisi calon siswa.</p>
+      <div class="choice-grid" id="categoryChoices"></div>
+      <button type="button" class="back-btn" data-back="2">Kembali ke pilihan jalur</button>
+    </div>
+
+    <div class="step" id="step4" data-step="4">
+      <p class="step-label">Langkah 4 · Identitas calon siswa</p>
+      <h3>Calon siswa putra atau putri?</h3>
+      <p class="step-helper">Pilihan ini digunakan untuk menampilkan rincian perlengkapan yang sesuai.</p>
+      <div class="choice-grid">
+        <button type="button" class="choice-btn" data-gender="Putra">
+          <span class="choice-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span>
+          <strong>Putra</strong><small>Termasuk kopyah</small>
+        </button>
+        <button type="button" class="choice-btn" data-gender="Putri">
+          <span class="choice-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3a5 5 0 0 0-5 5v2c0 2-1 3-3 4 1 4 4 7 8 7s7-3 8-7c-2-1-3-2-3-4V8a5 5 0 0 0-5-5Z"/><path d="M7 11c2 1 8 1 10 0"/></svg></span>
+          <strong>Putri</strong><small>Termasuk kerudung</small>
+        </button>
+      </div>
+      <button type="button" class="back-btn" data-back="3">Kembali ke kategori</button>
+    </div>
+
+    <div class="step" id="step5" data-step="5">
+      <p class="step-label">Langkah 5 · Rincian biaya dan manfaat</p>
+      <h3 id="summaryTitle">Rincian pilihan</h3>
+      <div class="selection-summary" id="selectionSummary"></div>
+
+      <div class="fee-panel payment-summary" aria-live="polite">
+        <div class="fee-panel-heading">
+          <span>Rp</span>
+          <div><h4>Ringkasan biaya pendaftaran</h4><p>Gambaran biaya awal dan manfaat yang langsung mengurangi biaya awal.</p></div>
+        </div>
+        <div class="fee-row"><span>Biaya awal sekolah</span><strong id="summaryBaseTotal">—</strong></div>
+        <div class="fee-row"><span>Potongan manfaat beasiswa</span><strong id="summaryInitialBenefit">—</strong></div>
+        <div class="fee-total"><span>Total yang harus dibayar</span><strong id="summaryPayableTotal">—</strong></div>
+        <p class="fee-disclaimer">Pembebasan infaq untuk bulan berikutnya tetap dicantumkan sebagai manfaat, tetapi tidak mengurangi tagihan biaya awal pada ringkasan ini.</p>
+      </div>
+
+      <div class="fee-panel">
+        <div class="fee-panel-heading"><span>01</span><div><h4>Rincian biaya awal</h4><p>Biaya normal sesuai jenjang dan perlengkapan calon siswa.</p></div></div>
+        <div id="normalFeeList" class="fee-list"></div>
+        <div class="fee-total"><span>Total biaya awal normal</span><strong id="normalFeeTotal">—</strong></div>
+      </div>
+
+      <div class="benefit-panel">
+        <div class="fee-panel-heading"><span>02</span><div><h4>Manfaat beasiswa/potongan</h4><p>Komponen biaya yang mendapatkan bantuan sesuai jalur pilihan.</p></div></div>
+        <div id="benefitList" class="fee-list"></div>
+        <div class="benefit-total"><span>Total nilai manfaat</span><strong id="benefitTotal">—</strong></div>
+      </div>
+      <p class="fee-disclaimer" id="feeDisclaimer">Nilai manfaat merupakan rincian komponen bantuan, bukan uang tunai yang diberikan kepada calon siswa. Pembebasan infaq mengikuti periode yang tercantum.</p>
+
+      <button type="button" class="btn-primary" id="btnTertarik"><span>Lanjutkan pengisian data</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      <button type="button" class="back-btn" data-back="4">Ubah pilihan</button>
+    </div>
+
+    <div class="step" id="stepForm" data-step="6">
+      <p class="step-label">Tahap akhir · Hubungi panitia</p>
+      <h3>Lengkapi data calon siswa</h3>
+      <p class="step-helper">Data ini akan disertakan dalam pesan WhatsApp agar panitia dapat memberikan informasi lanjutan.</p>
+      <form id="interestForm">
+        <label class="form-label" for="regNama">Nama lengkap calon siswa</label>
+        <input id="regNama" type="text" name="nama" placeholder="Masukkan nama lengkap" autocomplete="name" required />
+        <label class="form-label" for="regAsal">Asal sekolah</label>
+        <input id="regAsal" type="text" name="asal" placeholder="Nama SD/MI atau SMP/MTs asal" required />
+        <label class="form-label" for="regWhatsapp">Nomor WhatsApp orang tua/wali</label>
+        <input id="regWhatsapp" type="tel" name="whatsapp" placeholder="Contoh: 08xxxxxxxxxx" inputmode="tel" required />
+        <button type="submit" class="btn-primary"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20l1.2-4.7A8.5 8.5 0 1 1 20.5 11.5Z"/><path d="M8.5 8.5c.5 2.5 2.5 4.5 5 5l1.2-1.2 2 1c-.2 1.2-1.2 2-2.4 2-3.8-.5-6.6-3.3-7.1-7.1 0-1.2.8-2.2 2-2.4l1 2-1.7.7Z"/></svg><span>Kirim pilihan melalui WhatsApp</span></button>
+      </form>
+      <button type="button" class="back-btn" data-back="5">Kembali ke rincian</button>
+    </div>
+
+    <div class="registration-note"><strong>Informasi penting</strong><p>Pemilihan jalur pada halaman ini merupakan pengajuan minat/informasi awal, bukan penetapan otomatis sebagai penerima beasiswa. Ketentuan dan bukti prestasi akan diverifikasi oleh panitia SPMB Haswada.</p></div>
+  </div>
+</section>
+
 
   <!-- ===================== 10. CLOSING ===================== -->
   <section id="closing" class="section closing">
     <div class="closing-bg"></div>
     <div class="closing-content">
-      <p class="closing-line">Setiap perjalanan</p>
-      <p class="closing-line">dimulai dari satu langkah.</p>
-      <h2 class="closing-title">Masa Depanmu<br/>Dimulai di Sini.</h2>
-
+      <p class="closing-line">Siap Membentuk Karakter Disiplin </p>
+      <p class="closing-line">Dan Raihlah Prestasi Bersama Haswada.</p> 
+      
+      <h1 class="closing-title">Daftar Sekarang & Amankan Kuota Beasiswa</h1> 
+ 
       <div class="closing-buttons">
-        <a href="#opening" class="btn-primary">Jelajahi Haswada</a>
-        <a href="#opportunity" class="btn-secondary">Penerimaan Pelajar Baru</a>
+        <a href="#opportunity" class="btn-secondary">[Klaim Beasiswa & Daftar Sekarang]</a>
       </div>
-      <a href="#opportunity" class="closing-link">Klaim Beasiswa</a>
+<p class="closing-line">Lihat keseruan kegiatan dan prestasi kami di:</p>
+
+   <!-- MEDIA SOSIAL HASWADA: ganti href="#" dengan tautan akun resmi -->
+      <div class="closing-social" aria-label="Media sosial Haswada">
+        <a href="#" class="social-icon" aria-label="Facebook Haswada" title="Facebook" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-8.2h2.8l.4-3.2h-3.2V7.5c0-.9.3-1.5 1.6-1.5h1.7V3.1c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.3H7.3v3.2h2.8V21h3.4Z"/></svg>
+        </a>
+        <a href="#" class="social-icon" aria-label="Instagram Haswada" title="Instagram" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.1" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.7" cy="6.6" r="1.2"/></svg>
+        </a>
+        <a href="#" class="social-icon" aria-label="TikTok Haswada" title="TikTok" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.7 3h-3.2v12.1a2.7 2.7 0 1 1-2.3-2.7v-3.3a6 6 0 1 0 5.5 6V9a8.1 8.1 0 0 0 4.3 1.2V7a4.9 4.9 0 0 1-4.3-4Z"/></svg>
+        </a>
+        <a href="#" class="social-icon" aria-label="WhatsApp Haswada" title="WhatsApp" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.3 3.7A11.5 11.5 0 0 0 2.2 17.5L.8 23.2l5.8-1.5A11.5 11.5 0 0 0 20.3 3.7ZM12 20.5c-1.7 0-3.3-.5-4.7-1.3l-.3-.2-3.4.9.9-3.3-.2-.3A8.9 8.9 0 1 1 12 20.5Zm4.9-6.7c-.3-.2-1.7-.8-2-.9-.3-.1-.5-.2-.7.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.2-1.2-.4-2.3-1.4-.8-.7-1.4-1.6-1.5-1.9-.2-.3 0-.4.1-.6l.5-.6c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.2-.7-1.6-1-2.1-.2-.5-.5-.4-.7-.4h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.1 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 1.9-1.3.2-.6.2-1.1.2-1.3-.1-.2-.3-.3-.6-.5Z"/></svg>
+        </a>
+        <a href="#" class="social-icon" aria-label="YouTube Haswada" title="YouTube" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.6V8.4l6.2 3.6-6.2 3.6Z"/></svg>
+        </a>
+      </div>
     </div>
   </section>
+
+
+  <style>
+    /* Ikon media sosial pada bagian closing */
+    .closing-social{display:flex;justify-content:center;align-items:center;gap:12px;margin:24px auto 0}
+    .closing-social .social-icon{width:34px;height:34px;display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.42);border-radius:50%;color:#fff;background:rgba(255,255,255,.08);transition:background .2s ease,border-color .2s ease,transform .2s ease}
+    .closing-social .social-icon svg{width:16px;height:16px;display:block;fill:currentColor}
+    .closing-social .social-icon:hover{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.85);transform:translateY(-2px)}
+    .closing-social .social-icon:focus-visible{outline:2px solid #fff;outline-offset:3px}
+    @media(max-width:480px){.closing-social{gap:10px;margin-top:20px}.closing-social .social-icon{width:32px;height:32px}.closing-social .social-icon svg{width:15px;height:15px}}
+  </style>
 
   <script src="js/main.js"></script>
     <script>
@@ -446,5 +591,6 @@ Juara 3 Kejuaraan Pencak Silat Wilayah Jawa Timur Ke - X Tahun 2026</div>
   // Ganti foto otomatis setiap 3,5 detik (3500ms)
   setInterval(showNextSlide, 3500);
 </script>
+    
 </body>
 </html>
