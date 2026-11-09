@@ -444,7 +444,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('normalFeeTotal').textContent = money(baseTotal);
     document.getElementById('benefitTotal').textContent = money(benefitTotal);
     document.getElementById('summaryBaseTotal').textContent = money(baseTotal);
-    document.getElementById('summaryInitialBenefit').textContent = `− ${money(initialBenefitTotal)}`;
+    document.getElementById('summaryInitialBenefit').textContent = `− ${money(benefitTotal)}`;
     document.getElementById('summaryPayableTotal').textContent = money(payableTotal);
     const note = state.jenjang === 'SMP' && benefitRows.some(row => row[0].toLowerCase().includes('infaq'))
       ? 'Pembebasan infaq pada jalur yang dipilih berlaku selama jumlah bulan yang tercantum. Nilai manfaat bukan uang tunai dan tidak langsung dikurangkan dari total biaya awal. Nominal dan ketentuan akan dikonfirmasi panitia.'
