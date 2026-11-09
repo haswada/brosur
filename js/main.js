@@ -531,16 +531,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const baseTotal = baseRows.reduce((sum, row) => sum + row[1], 0);
     const baseByLabel = new Map(baseRows.map(([label, amount]) => [label, amount]));
     const initialBenefitTotal = benefitRows.reduce((sum, [label, amount]) => sum + Math.min(baseByLabel.get(label) || 0, amount), 0);
+    const deferredBenefits = benefitRows.filter(([label]) => label.toLowerCase().includes('infaq'));
+    const deferredBenefitTotal = deferredBenefits.reduce((sum, row) => sum + row[1], 0);
     const payableTotal = Math.max(0, baseTotal - initialBenefitTotal);
     const message = [
       'Assalamu’alaikum, Panitia SPMB Haswada.', '',
       'Saya ingin meminta informasi pendaftaran dan beasiswa dengan data berikut:',
       `Nama calon siswa: ${nama}`, `Jenjang: ${state.jenjang} Hasanuddin`,
       `Jalur: ${programName}`, `Kategori: ${state.kategori}`, `Jenis kelamin: ${state.gender}`,
-      `Asal sekolah: ${asal}`, `WhatsApp orang tua/wali: ${whatsapp}`,
-      `Total biaya awal: ${money(baseTotal)}`, `Potongan yang mengurangi biaya awal: ${money(initialBenefitTotal)}`, `Perkiraan total biaya awal yang harus dibayar: ${money(payableTotal)}`, `Total nilai seluruh manfaat yang tertera: ${money(total)}`, '',
+      `Asal sekolah: ${asal}`, `WhatsApp orang tua/wali: ${whatsapp}`, '',
+      'Rincian biaya dan manfaat beasiswa:',
+      `Total biaya awal: ${money(baseTotal)}`,
+      `Potongan langsung biaya awal: ${money(initialBenefitTotal)}`,
+      ...(deferredBenefits.length ? [`Manfaat pembebasan infaq: ${money(deferredBenefitTotal)} (${deferredBenefits.map(([label]) => label).join(', ')})`] : []),
+      `Total nilai manfaat beasiswa: ${money(total)}`,
+      `Perkiraan biaya awal yang perlu dibayar: ${money(payableTotal)}`, '',
       'Mohon informasi mengenai persyaratan, bukti prestasi (jika diperlukan), dan tahapan pendaftaran. Terima kasih.'
-    ].join('\n');
+    ].join('\\n');
     // Catat perpindahan dari website ke WhatsApp. Jangan kirim nama,
     // asal sekolah, nomor telepon, atau isi pesan ke GA4.
     trackEvent('whatsapp_handoff', {
