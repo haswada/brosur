@@ -419,6 +419,37 @@ document.addEventListener('DOMContentLoaded', () => {
       return [label, amount];
     });
   }
+
+  // Membagi manfaat beasiswa antara potongan biaya awal dan manfaat bulan berikutnya.
+  function calculateBenefitAllocation(baseRows, benefitRows) {
+    const baseByLabel = new Map(baseRows.map(([label, amount]) => [label.toLowerCase(), amount]));
+    const monthlyInfaq = baseRows.find(([label]) => label.toLowerCase().includes('infaq'))?.[1] || 0;
+    let initialBenefitTotal = 0;
+    const deferredBenefits = [];
+
+    benefitRows.forEach(([label, amount]) => {
+      const normalizedLabel = label.toLowerCase();
+      if (normalizedLabel.includes('infaq')) {
+        // Frasa "N bulan" berarti manfaat mencakup bulan pertama dan bulan berikutnya.
+        // Frasa yang menyebut bulan tertentu (mis. Agustus) adalah manfaat periode mendatang.
+        const coversMultipleMonths = /\\b\\d+\\s*bulan\\b/.test(normalizedLabel);
+        const appliedToInitial = coversMultipleMonths ? Math.min(monthlyInfaq, amount) : 0;
+        initialBenefitTotal += appliedToInitial;
+        const remaining = amount - appliedToInitial;
+        if (remaining > 0) {
+          deferredBenefits.push([
+            appliedToInitial > 0 ? label.replace(/\\b\\d+\\s*bulan\\b/i, 'bulan berikutnya') : label,
+            remaining
+          ]);
+        }
+        return;
+      }
+
+      initialBenefitTotal += Math.min(baseByLabel.get(normalizedLabel) || 0, amount);
+    });
+
+    return { initialBenefitTotal, deferredBenefits };
+  }
   function renderSummary() {
     const baseRows = feeData[state.jenjang].map(row => [...row]);
     baseRows.splice(8, 0, [...apparel[state.jenjang][state.gender]]);
@@ -427,14 +458,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const baseTotal = baseRows.reduce((sum, row) => sum + row[1], 0);
     const benefitTotal = benefitRows.reduce((sum, row) => sum + row[1], 0);
 
-    // Hanya manfaat yang membebaskan komponen biaya awal yang dikurangkan.
-    // Pembebasan infaq bulanan/periode berikutnya tetap dihitung sebagai manfaat,
-    // tetapi tidak mengurangi tagihan awal.
-    const baseByLabel = new Map(baseRows.map(([label, amount]) => [label, amount]));
-    const initialBenefitTotal = benefitRows.reduce((sum, [label, amount]) => {
-      const initialCost = baseByLabel.get(label) || 0;
-      return sum + Math.min(initialCost, amount);
-    }, 0);
+    const { initialBenefitTotal, deferredBenefits } = calculateBenefitAllocation(baseRows, benefitRows);
     const payableTotal = Math.max(0, baseTotal - initialBenefitTotal);
     const programName = categoryLabels[state.program].title;
     document.getElementById('summaryTitle').textContent = `Rincian ${programName}`;
@@ -444,10 +468,10 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('normalFeeTotal').textContent = money(baseTotal);
     document.getElementById('benefitTotal').textContent = money(benefitTotal);
     document.getElementById('summaryBaseTotal').textContent = money(baseTotal);
-    document.getElementById('summaryInitialBenefit').textContent = `− ${money(benefitTotal)}`;
+    document.getElementById('summaryInitialBenefit').textContent = `− ${money(initialBenefitTotal)}`;
     document.getElementById('summaryPayableTotal').textContent = money(payableTotal);
-    const note = state.jenjang === 'SMP' && benefitRows.some(row => row[0].toLowerCase().includes('infaq'))
-      ? 'Pembebasan infaq pada jalur yang dipilih berlaku selama jumlah bulan yang tercantum. Nilai manfaat bukan uang tunai dan tidak langsung dikurangkan dari total biaya awal. Nominal dan ketentuan akan dikonfirmasi panitia.'
+    const note = benefitRows.some(row => row[0].toLowerCase().includes('infaq'))
+      ? 'Pembebasan infak untuk bulan pertama diperhitungkan sebagai potongan biaya awal apabila manfaat mencakup beberapa bulan. Sisa pembebasan berlaku untuk bulan berikutnya. Nilai manfaat bukan uang tunai.'
       : 'Nilai manfaat merupakan rincian komponen bantuan, bukan uang tunai yang diberikan kepada calon siswa. Ketentuan dan penerapan manfaat akan dikonfirmasi panitia.';
     document.getElementById('feeDisclaimer').textContent = note;
   }
@@ -529,9 +553,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const baseRows = feeData[state.jenjang].map(row => [...row]);
     baseRows.splice(8, 0, [...apparel[state.jenjang][state.gender]]);
     const baseTotal = baseRows.reduce((sum, row) => sum + row[1], 0);
-    const baseByLabel = new Map(baseRows.map(([label, amount]) => [label, amount]));
-    const initialBenefitTotal = benefitRows.reduce((sum, [label, amount]) => sum + Math.min(baseByLabel.get(label) || 0, amount), 0);
-    const deferredBenefits = benefitRows.filter(([label]) => label.toLowerCase().includes('infaq'));
+    const { initialBenefitTotal, deferredBenefits } = calculateBenefitAllocation(baseRows, benefitRows);
     const deferredBenefitTotal = deferredBenefits.reduce((sum, row) => sum + row[1], 0);
     const payableTotal = Math.max(0, baseTotal - initialBenefitTotal);
     const message = [
@@ -542,8 +564,8 @@ document.addEventListener('DOMContentLoaded', () => {
       `Asal sekolah: ${asal}`, `WhatsApp orang tua/wali: ${whatsapp}`, '',
       'Rincian biaya dan manfaat beasiswa:',
       `Total biaya awal: ${money(baseTotal)}`,
-      `Potongan langsung biaya awal: ${money(initialBenefitTotal)}`,
-      ...(deferredBenefits.length ? [`Manfaat pembebasan infaq: ${money(deferredBenefitTotal)} (${deferredBenefits.map(([label]) => label).join(', ')})`] : []),
+      `Potongan langsung biaya awal (termasuk infak bulan pertama): ${money(initialBenefitTotal)}`,
+      ...(deferredBenefits.length ? [`Sisa pembebasan infak untuk bulan berikutnya: ${money(deferredBenefitTotal)} (${deferredBenefits.map(([label]) => label).join(', ')})`] : []),
       `Total nilai manfaat beasiswa: ${money(total)}`,
       `Perkiraan biaya awal yang perlu dibayar: ${money(payableTotal)}`, '',
       'Mohon informasi mengenai persyaratan, bukti prestasi (jika diperlukan), dan tahapan pendaftaran. Terima kasih.'
