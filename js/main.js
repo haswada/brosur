@@ -432,13 +432,13 @@ document.addEventListener('DOMContentLoaded', () => {
       if (normalizedLabel.includes('infaq')) {
         // Frasa "N bulan" berarti manfaat mencakup bulan pertama dan bulan berikutnya.
         // Frasa yang menyebut bulan tertentu (mis. Agustus) adalah manfaat periode mendatang.
-        const coversMultipleMonths = /\\b\\d+\\s*bulan\\b/.test(normalizedLabel);
+        const coversMultipleMonths = /\b\d+\s*bulan\b/.test(normalizedLabel);
         const appliedToInitial = coversMultipleMonths ? Math.min(monthlyInfaq, amount) : 0;
         initialBenefitTotal += appliedToInitial;
         const remaining = amount - appliedToInitial;
         if (remaining > 0) {
           deferredBenefits.push([
-            appliedToInitial > 0 ? label.replace(/\\b\\d+\\s*bulan\\b/i, 'bulan berikutnya') : label,
+            appliedToInitial > 0 ? label.replace(/\b\d+\s*bulan\b/i, 'bulan berikutnya') : label,
             remaining
           ]);
         }
