@@ -547,7 +547,7 @@ document.addEventListener('DOMContentLoaded', () => {
       `Total nilai manfaat beasiswa: ${money(total)}`,
       `Perkiraan biaya awal yang perlu dibayar: ${money(payableTotal)}`, '',
       'Mohon informasi mengenai persyaratan, bukti prestasi (jika diperlukan), dan tahapan pendaftaran. Terima kasih.'
-    ].join('\\n');
+    ].join('\n');
     // Catat perpindahan dari website ke WhatsApp. Jangan kirim nama,
     // asal sekolah, nomor telepon, atau isi pesan ke GA4.
     trackEvent('whatsapp_handoff', {
