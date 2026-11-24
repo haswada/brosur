@@ -570,7 +570,6 @@ document.addEventListener('DOMContentLoaded', () => {
       ...(deferredBenefits.length ? [`Sisa pembebasan infak untuk bulan berikutnya: ${money(deferredBenefitTotal)} (${deferredBenefits.map(([label]) => label).join(', ')})`] : []),
       `Total nilai manfaat beasiswa: ${money(total)}`,
       `Perkiraan biaya awal yang perlu dibayar: ${money(payableTotal)}`, '',
-      'Informasi pembayaran: biaya pendidikan dan perlengkapan dapat dibayarkan bertahap selama tahun pertama. Waktu dan jumlah pembayaran dibicarakan dengan pihak sekolah. Infaq bulanan tetap dibayarkan setiap bulan.', '',
       'Mohon informasi mengenai persyaratan, bukti prestasi (jika diperlukan), dan tahapan pendaftaran. Terima kasih.'
     ].join('\n');
     // Catat perpindahan dari website ke WhatsApp. Jangan kirim nama,
