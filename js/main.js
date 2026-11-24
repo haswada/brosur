@@ -413,6 +413,34 @@ document.addEventListener('DOMContentLoaded', () => {
       row.append(name, value); container.appendChild(row);
     });
   }
+
+  // Tampilan SMP memisahkan manfaat infaq bulan pertama dan bulan berikutnya.
+  // Nilai total manfaat dan rumus biaya tetap menggunakan data sumber yang sama.
+  function benefitsForDisplay(rows, jenjang, baseRows) {
+    if (jenjang !== 'SMP') return rows.map(row => [...row]);
+    const monthlyInfaq = baseRows.find(([label]) => label.toLowerCase().includes('infaq'))?.[1] || 0;
+    const displayRows = [];
+    rows.forEach(([label, amount]) => {
+      const match = label.toLowerCase().match(/\b(\d+)\s*bulan\b/);
+      if (!label.toLowerCase().includes('infaq') || !match || monthlyInfaq <= 0) {
+        displayRows.push([label, amount]);
+        return;
+      }
+      const coveredMonths = Number(match[1]);
+      const firstMonth = Math.min(monthlyInfaq, amount);
+      const remaining = amount - firstMonth;
+      if (firstMonth > 0) displayRows.push(['Pembebasan infaq bulan pertama', firstMonth]);
+      if (remaining > 0) {
+        const remainingMonths = Math.max(0, coveredMonths - 1);
+        const periodLabel = remainingMonths > 0
+          ? `Pembebasan infaq ${remainingMonths} bulan berikutnya`
+          : 'Pembebasan infaq untuk periode berikutnya';
+        displayRows.push([periodLabel, remaining]);
+      }
+    });
+    return displayRows;
+  }
+
   function prepareSmaBenefits(rows) {
     return rows.map(([label, amount]) => {
       if (label === 'Perlengkapan Putra/Putri') return [apparel.SMA[state.gender][0], apparel.SMA[state.gender][1]];
@@ -466,15 +494,18 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('summaryTitle').textContent = `Rincian ${programName}`;
     document.getElementById('selectionSummary').innerHTML = `<strong>${state.jenjang} Hasanuddin · ${state.gender}</strong>${programName} — ${state.kategori}`;
     renderRows(document.getElementById('normalFeeList'), baseRows);
-    renderRows(document.getElementById('benefitList'), benefitRows);
+    renderRows(document.getElementById('benefitList'), benefitsForDisplay(benefitRows, state.jenjang, baseRows));
     document.getElementById('normalFeeTotal').textContent = money(baseTotal);
     document.getElementById('benefitTotal').textContent = money(benefitTotal);
     document.getElementById('summaryBaseTotal').textContent = money(baseTotal);
     document.getElementById('summaryInitialBenefit').textContent = `− ${money(initialBenefitTotal)}`;
+    document.getElementById('summaryBenefitTotal').textContent = money(benefitTotal);
     document.getElementById('summaryPayableTotal').textContent = money(payableTotal);
-    const note = benefitRows.some(row => row[0].toLowerCase().includes('infaq'))
-      ? 'Pembebasan infak untuk bulan pertama diperhitungkan sebagai potongan biaya awal apabila manfaat mencakup beberapa bulan. Sisa pembebasan berlaku untuk bulan berikutnya. Nilai manfaat bukan uang tunai.'
-      : 'Nilai manfaat merupakan rincian komponen bantuan, bukan uang tunai yang diberikan kepada calon siswa. Ketentuan dan penerapan manfaat akan dikonfirmasi panitia.';
+    const note = deferredBenefits.length
+      ? 'Manfaat beasiswa ditampilkan terpisah agar jelas: potongan langsung mengurangi biaya awal, sedangkan pembebasan infaq bulan berikutnya berlaku pada periode berikutnya. Total manfaat mencakup keduanya dan bukan uang tunai.'
+      : benefitRows.some(row => row[0].toLowerCase().includes('infaq'))
+        ? 'Pembebasan infaq bulan pertama sudah diperhitungkan sebagai potongan biaya awal. Total manfaat bukan uang tunai.'
+        : 'Nilai manfaat merupakan bantuan berupa pembebasan atau potongan komponen biaya, bukan uang tunai. Ketentuan penerapannya akan dikonfirmasi panitia.';
     document.getElementById('feeDisclaimer').textContent = note;
   }
 
